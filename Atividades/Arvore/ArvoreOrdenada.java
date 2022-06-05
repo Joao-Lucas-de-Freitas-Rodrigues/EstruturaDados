@@ -17,8 +17,8 @@ public class ArvoreOrdenada {
 
     public static void addRecursivo(ArvoreOrdenada no, int valor) {
         if (no == null) {
-
             raiz = new ArvoreOrdenada(valor);
+            System.out.println("A raíz sera o valor: " + valor);
         } else {
             if (valor < no.valor) {
                 if (no.esquerda != null) {
@@ -45,11 +45,11 @@ public class ArvoreOrdenada {
 
     private static ArvoreOrdenada buscarNoRecursivo(ArvoreOrdenada no, int valor) {
         if (no == null) {
-            //System.out.println("O nó " + valor + " não existe na árvore");
+            System.out.println("O nó " + valor + " não existe na árvore");
             return no;
         }
         if (valor == no.valor) {
-            //System.out.println("O nó " + valor + " existe na árvore");
+            System.out.println("O nó " + valor + " existe na árvore");
             return no;
         }
         return valor < no.valor
@@ -57,60 +57,77 @@ public class ArvoreOrdenada {
                 : buscarNoRecursivo(no.direita, valor);
     }
 
-    public static void removerNoSFilhos(int valor) {
-        raiz = removerNoSemFilhos(valor);
-    }
+    // public static void removerNoSFilhos(int valor) {
+    // raiz = removerNoSemFilhos(valor);
+    // }
 
-    public static ArvoreOrdenada removerNoSemFilhos(int valor) {
-        ArvoreOrdenada no = buscarNo(valor);
-        if (no.esquerda == null && no.direita == null) {
-            return null;
-        } else if (no.esquerda == null || no.direita == null) {
-            return no.esquerda == null ? no.direita : no.esquerda;
-        }
-        int menorValor = buscarMenorValor(no.direita);
-        no.valor = menorValor;
-        no.direita = removerNoSemFilhos(menorValor);
-        return no;
-    }
+    // public static ArvoreOrdenada removerNoSemFilhos(int valor) {
+    // ArvoreOrdenada no = buscarNo(valor);
+    // if (no.esquerda == null && no.direita == null) {
+    // return null;
+    // } else if (no.esquerda == null || no.direita == null) {
+    // return no.esquerda == null ? no.direita : no.esquerda;
+    // }
+    // int menorValor = buscarMenorValor(no.direita);
+    // no.valor = menorValor;
+    // no.direita = removerNoSemFilhos(no.valor);
+    // return no;
+    // }
 
     private static int buscarMenorValor(ArvoreOrdenada no) {
         return no.esquerda == null ? no.valor : buscarMenorValor(no.esquerda);
     }
 
-    // public static void removerNo(int valor) {
-    // raiz = removerNoFilhos(raiz,valor);
-    // }
+    public static void removerNoSFilhos(int valor) {
+        raiz = removerNoSemFilhos(raiz, valor);
+    }
 
-    // public static ArvoreOrdenada removerNoFilhos(ArvoreOrdenada no,int valor) {
-    // if(no == null){
-    // return null;
-    // }
-    // if(no.valor == valor){
-    // if (no.esquerda == null && no.direita == null) {
-    // return null;
-    // }
-    // }
-    // if(valor < no.valor){
-    // no.esquerda = removerNoFilhos(no.esquerda, valor);
-    // return no;
-    // }
-    // no.direita = removerNoFilhos(no.direita, valor);
-    // return no;
-    // }
+    public static ArvoreOrdenada removerNoSemFilhos(ArvoreOrdenada no, int valor) {
+        if (no == null) {
+            return null;
+        } else if (valor < no.valor) {
+            no.esquerda = removerNoSemFilhos(no.esquerda, valor);
+            return no;
+        } else if (valor > no.valor) {
+            no.direita = removerNoSemFilhos(no.direita, valor);
+            return no;
+        } else {
+            if (no.esquerda == null && no.direita == null) {
+                return null;
+            } else if (no.esquerda == null || no.direita == null) {
+                return no.esquerda == null ? no.direita : no.esquerda;
+            }
+            no.valor = buscarMenorValor(no.direita);
+            no.direita = removerNoSemFilhos(no.direita, no.valor);
+            return no;
+        }
+    }
+
+    public static void imprimirEmOrdem(ArvoreOrdenada raiz){
+        if(raiz == null){
+            return;
+        }
+        imprimirEmOrdem(raiz.esquerda);
+        System.out.print(raiz.valor + "\t");
+        imprimirEmOrdem(raiz.direita);
+    }
 
     public static void main(String[] args) {
+        add(1);
         add(2);
-        add(6);
-        add(7);
-        add(4);
-        add(3);
-        add(5);
-        // buscarNo(2);
-        // buscarNo(10);
-        // buscarNo(4);
-        removerNoSFilhos(4);
-        buscarNo(6);
-        buscarNo(3);
+        add(20);
+        add(10);
+        add(9);
+        add(15);
+        add(14);
+        add(13);
+        add(12);
+        add(16);
+        imprimirEmOrdem(raiz);
+        buscarNo(10);
+        removerNoSFilhos(10);
+        buscarNo(10);
+        imprimirEmOrdem(raiz);
+        
     }
 }
