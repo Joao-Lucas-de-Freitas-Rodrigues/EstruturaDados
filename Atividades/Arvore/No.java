@@ -1,18 +1,18 @@
 package Atividades.Arvore;
 
 public class No {
-	private String descricao;
+	private int valor;
 	private No[] filhos;// N Filhos
 	private No pai;
 
-	public No(String descricao) {
-		this.descricao = descricao;
+	public No(int valor) {
+		this.valor = valor;
 		filhos = null;
 	}
 
-	public No(String descricao, No[] filhos) {
+	public No(int valor, No[] filhos) {
 		super();
-		this.descricao = descricao;
+		this.valor = valor;
 		this.filhos = filhos;
 	}
 }

@@ -1,33 +1,33 @@
 package Atividades.Arvore;
 
 public class NoBinario {
-    private String descricao;
+    private int valor;
     private NoBinario direita;
     private NoBinario esquerda;
-    private NoBinario pai;
+    //private NoBinario pai;
 
-    public NoBinario(String descricao) {
+    public NoBinario(int valor) {
         this.direita = null;
         this.esquerda = null;
-        this.pai = null;
-        this.descricao = descricao;
+        //this.pai = null;
+        this.valor = valor;
     }
 
-    public NoBinario(String descricao, NoBinario pai,
+    public NoBinario(int valor,
             NoBinario direita, NoBinario esquerda) {
         super();
-        this.pai = pai;
-        this.descricao = descricao;
+        //this.pai = pai;
+        this.valor = valor;
         this.direita = direita;
         this.esquerda = esquerda;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public int getValor() {
+        return valor;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 
     public NoBinario getDireita() {
@@ -46,11 +46,11 @@ public class NoBinario {
         this.esquerda = esquerda;
     }
 
-    public NoBinario getPai() {
-        return pai;
-    }
+    // public NoBinario getPai() {
+    //     return pai;
+    // }
 
-    public void setPai(NoBinario pai) {
-        this.pai = pai;
-    }
+    // public void setPai(NoBinario pai) {
+    //     this.pai = pai;
+    // }
 }
