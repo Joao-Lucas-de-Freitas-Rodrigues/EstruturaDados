@@ -57,23 +57,6 @@ public class ArvoreOrdenada {
                 : buscarNoRecursivo(no.direita, valor);
     }
 
-    // public static void removerNoSFilhos(int valor) {
-    // raiz = removerNoSemFilhos(valor);
-    // }
-
-    // public static ArvoreOrdenada removerNoSemFilhos(int valor) {
-    // ArvoreOrdenada no = buscarNo(valor);
-    // if (no.esquerda == null && no.direita == null) {
-    // return null;
-    // } else if (no.esquerda == null || no.direita == null) {
-    // return no.esquerda == null ? no.direita : no.esquerda;
-    // }
-    // int menorValor = buscarMenorValor(no.direita);
-    // no.valor = menorValor;
-    // no.direita = removerNoSemFilhos(no.valor);
-    // return no;
-    // }
-
     private static int buscarMenorValor(ArvoreOrdenada no) {
         return no.esquerda == null ? no.valor : buscarMenorValor(no.esquerda);
     }
@@ -124,6 +107,7 @@ public class ArvoreOrdenada {
         add(12);
         add(16);
         imprimirEmOrdem(raiz);
+        System.out.println();
         buscarNo(10);
         removerNoSFilhos(10);
         buscarNo(10);
